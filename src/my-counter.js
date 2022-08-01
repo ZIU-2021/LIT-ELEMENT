@@ -31,14 +31,27 @@ class MyCounter extends LitElement {
           <button @click="${this.incrementar}">+1</button>
           <button @click="${this.decrementar}">-1</button>
         </div>   
+
+        <feedback-element id="feedback"></feedback-element>
     `;
     }
 
+    get feedback() {
+        return this.shadowRoot.getElementById('feedback');
+    }
     incrementar() {
         this.counter++;
+
+        if (this.counter == 5) {
+            this.feedback.open('Haz pasado por 5 clicks');
+        }
     }
     decrementar() {
         this.counter--;
+
+        if (this.counter == 0) {
+            this.feedback.open('Haz reseteado los clicks');
+        }
     }
 }
 

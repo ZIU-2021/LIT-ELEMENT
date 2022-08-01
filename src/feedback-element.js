@@ -4,7 +4,8 @@ class FeedbackElement extends LitElement {
 
     static get properties() {
         return {
-            msg: { type: String }
+            msg: { type: String },
+            opened: { type: Boolean }
         };
     }
 
@@ -22,21 +23,28 @@ class FeedbackElement extends LitElement {
                justify-content: center;
                background-color: #e74c3c;
                color: white;
-               width 100%;
+               width: 100%;
                transition: all 0.7s ease-in;
                font-family: 'Trebuchet MS', sans-serif;
                font-size:1px;
             }
             .opened{
-             height: 100px;
-             font-size: 2em;   
+                height: 100px;
+                font-size: 2em;   
             }
         </style>
 
-        <div class="opened">
+        <div class="${this.opened?'opened':''}">
             ${this.msg}
         </div>
     `;
+    }
+
+    open(mensaje) {
+        this.msg = mensaje;
+        this.opened = true;
+
+        setTimeout(() => this.opened = false, 3000);
     }
 }
 
